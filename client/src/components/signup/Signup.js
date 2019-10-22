@@ -111,7 +111,7 @@ export default class signup extends Component {
               />
               {password_error && <p> {password_error} </p>}
             </InputField>
-            <Button>Sign Up</Button>
+            <Button>SIGN UP</Button>
           </InnerDiv>
         </Form>
       </Div>

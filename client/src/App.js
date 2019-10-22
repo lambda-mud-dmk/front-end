@@ -1,11 +1,15 @@
 import React from 'react';
-import Signup from './components/signup/Signup'
-
+import { Switch, Route } from 'react-router-dom';
+import Signup from './components/signup/Signup';
 
 function App() {
   return (
     <div>
-      <Signup />
+      <Switch>
+        <Route path='/registration'>
+          <Signup />
+        </Route>
+      </Switch>
     </div>
   );
 }

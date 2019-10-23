@@ -9,7 +9,7 @@ function App() {
   return (
     <div>
       <Switch>
-        <PrivateRoute path="/">
+        <PrivateRoute exact path="/">
           <GameWorld />
         </PrivateRoute>
         <Route path="/registration">

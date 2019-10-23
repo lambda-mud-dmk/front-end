@@ -31,7 +31,7 @@ export default class signup extends Component {
 
     try {
       const response = await axios.post(
-        'https://lambda-mud-test.herokuapp.com/api/login/',
+        'https://dmk-csbw1.herokuapp.com/api/login/',
         {
           username,
           password

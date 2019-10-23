@@ -38,8 +38,7 @@ const makeRequest = async (token, direction) => {
       {
         headers: {
           'Content-Type': 'application/json',
-          // Authorization: 'Token ' + token
-          Authorization: 'Token ' + '8d968284160a48ea533e8b15f1c608084588d98d'
+          Authorization: 'Token ' + token
         }
       }
     );
@@ -55,26 +54,30 @@ const sendMovement = async (token, direction) => {
   return await makeRequest(token, direction);
 };
 
-const Controls = (room, token) => {
+const Controls = room => {
   const [currentRoom, setCurrentRoom] = React.useState(
     room ? room : { title: '', description: '' }
   );
   const moveNorth = async () => {
+    const token = localStorage.getItem('key');
     const room = await sendMovement(token, 'n');
     setCurrentRoom(room);
   };
 
   const moveSouth = async () => {
+    const token = localStorage.getItem('key');
     const room = await sendMovement(token, 's');
     setCurrentRoom(room);
   };
 
   const moveEast = async () => {
+    const token = localStorage.getItem('key');
     const room = await sendMovement(token, 'e');
     setCurrentRoom(room);
   };
 
   const moveWest = async () => {
+    const token = localStorage.getItem('key');
     const room = await sendMovement(token, 'w');
     setCurrentRoom(room);
   };
@@ -82,7 +85,7 @@ const Controls = (room, token) => {
   return (
     <>
       <div style={styleControls}>
-        <div style={{height: "25%"}}>
+        <div style={{ height: '25%' }}>
           <p>{currentRoom.title}</p>
           <p>{currentRoom.description}</p>
         </div>

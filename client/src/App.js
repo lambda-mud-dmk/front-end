@@ -3,6 +3,7 @@ import { Switch, Route } from "react-router-dom";
 import Signup from "./components/signup/Signup";
 import Login from "./components/login/Login";
 import GameWorld from "./components/game/GameWorld";
+import PrivateRoute from "./components/protected/PrivateRoute";
 
 function App() {
   return (
@@ -14,9 +15,9 @@ function App() {
         <Route path="/login">
           <Login />
         </Route>
-        <Route path="/play">
+        <PrivateRoute path="/play">
           <GameWorld />
-        </Route>
+        </PrivateRoute>
       </Switch>
     </div>
   );

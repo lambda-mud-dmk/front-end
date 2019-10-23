@@ -35,7 +35,7 @@ export default class signup extends Component {
           password
         }
       );
-      console.log(response);
+      localStorage.setItem("key", response.data.key)
       this.setState({
         username: "",
         email: "",

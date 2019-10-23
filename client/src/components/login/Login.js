@@ -1,14 +1,16 @@
-import React, { Component } from "react";
-import axios from "axios";
-import styled from "styled-components";
-import Input from "../input/Input";
-import Button from "../button/Button";
+import React, { Component } from 'react';
+import axios from 'axios';
+import styled from 'styled-components';
+import Input from '../input/Input';
+import Button from '../button/Button';
+import { Redirect } from 'react-router-dom';
 
 export default class signup extends Component {
   state = {
-    username: "",
-    password: "",
-    error: ""
+    username: '',
+    password: '',
+    error: '',
+    shouldRedirect: false
   };
 
   handleChange = event => {
@@ -23,24 +25,25 @@ export default class signup extends Component {
     const { username, password } = this.state;
     if (!username || username.length < 3) {
       return this.setState({
-        error: "username must be at least 3 characters long"
+        error: 'username must be at least 3 characters long'
       });
     }
 
     try {
       const response = await axios.post(
-        "https://lambda-mud-test.herokuapp.com/api/login/",
+        'https://dmk-csbw1.herokuapp.com/api/login/',
         {
           username,
           password
         }
       );
-      localStorage.setItem("key", response.data.key)
+      localStorage.setItem('key', response.data.key);
       this.setState({
-        username: "",
-        email: "",
-        password: "",
-        error: ""
+        username: '',
+        email: '',
+        password: '',
+        error: '',
+        shouldRedirect: true
       });
     } catch (error) {
       console.error(error);
@@ -48,44 +51,49 @@ export default class signup extends Component {
   };
 
   render() {
-    const { username, password, error } = this.state;
-    return (
-      <Div>
-        <Form onSubmit={this.handleSubmit}>
-          <InnerDiv>
-            <h2>Login</h2>
-            <InputField>
-              <Input
-                type="text"
-                name="username"
-                placeholder="username"
-                value={username}
-                handleChange={this.handleChange}
-              />
-              {error && <p> {error} </p>}
-              <Input
-                type="password"
-                name="password"
-                placeholder="password"
-                value={password}
-                handleChange={this.handleChange}
-              />
-            </InputField>
-            <Button>LOGIN</Button>
-            <div>
-              <p>
-                Don't have an account? <a href='/registration'>Create one here </a>
-              </p>
-            </div>
-          </InnerDiv>
-        </Form>
-      </Div>
-    );
+    const { username, password, error, shouldRedirect } = this.state;
+    if (!shouldRedirect) {
+      return (
+        <Div>
+          <Form onSubmit={this.handleSubmit}>
+            <InnerDiv>
+              <h2>Login</h2>
+              <InputField>
+                <Input
+                  type="text"
+                  name="username"
+                  placeholder="username"
+                  value={username}
+                  handleChange={this.handleChange}
+                />
+                {error && <p> {error} </p>}
+                <Input
+                  type="password"
+                  name="password"
+                  placeholder="password"
+                  value={password}
+                  handleChange={this.handleChange}
+                />
+              </InputField>
+              <Button>LOGIN</Button>
+              <div>
+                <p>
+                  Don't have an account?{' '}
+                  <a href="/registration">Create one here </a>
+                </p>
+              </div>
+            </InnerDiv>
+          </Form>
+        </Div>
+      );
+    } else {
+      return <Redirect to="/" />;
+    }
   }
 }
 
 const Div = styled.div`
-  background: url("/controller.jpg");
+  background: url('/controller.jpg');
   width: 100%;
   height: 100vh;
   background-size: cover;
@@ -119,8 +127,8 @@ const InnerDiv = styled.div`
     color: #f5f5f5d1;
     font-size: 18px;
     a {
-        color: #f5f5f5d1;
-        text-decoration: underline;
+      color: #f5f5f5d1;
+      text-decoration: underline;
     }
   }
 `;

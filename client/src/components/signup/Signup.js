@@ -51,7 +51,7 @@ export default class signup extends Component {
           password2: confirm_password
         }
       );
-      console.log(response);
+      localStorage.setItem("key", response.data.key);
       this.setState({
         username: "",
         email: "",
@@ -84,7 +84,7 @@ export default class signup extends Component {
                 type="text"
                 name="username"
                 value={username}
-                placeholder= 'username'
+                placeholder="username"
                 handleChange={this.handleChange}
               />
               {error && <p> {error} </p>}
@@ -92,20 +92,20 @@ export default class signup extends Component {
                 type="email"
                 name="email"
                 value={email}
-                placeholder = 'email'
+                placeholder="email"
                 handleChange={this.handleChange}
               />
               <Input
                 type="password"
                 name="password"
-                placeholder = 'password'
+                placeholder="password"
                 value={password}
                 handleChange={this.handleChange}
               />
               <Input
                 type="password"
                 name="confirm_password"
-                placeholder = 'confirm password'
+                placeholder="confirm password"
                 value={confirm_password}
                 handleChange={this.handleChange}
               />
@@ -149,7 +149,7 @@ const InnerDiv = styled.div`
     color: white;
     margin-top: 20px;
     margin-bottom: 20px;
-    font-size: 32px
+    font-size: 32px;
   }
 `;
 const InputField = styled.div`

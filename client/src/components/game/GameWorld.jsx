@@ -19,13 +19,26 @@ class GameWorld extends Component {
     this.setState({ ...this.state, player: nextProps.player });
   }
   async componentDidMount() {
+    await this.fetchInit();
     const rooms = await this.fetchRooms();
-    this.setState({ rooms });
+    this.setState({ ...this.state, rooms });
   }
 
   fetchRooms = async () => {
     const response = await axios.get(`${apiUrl}/adv/rooms`);
     return response.data.room.reverse();
+  };
+
+  fetchInit = async () => {
+    const token = localStorage.getItem('key');
+    const response = await axios.get(`${apiUrl}/adv/init/`, {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: 'Token ' + token
+      }
+    });
+    const player = response.data;
+    this.updatePlayer(player);
   };
 
   updatePlayer = player => {

@@ -37,7 +37,8 @@ class Room extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      room: props.room
+      room: props.room,
+      player: props.player
     };
   }
   componentWillReceiveProps(nextProps) {

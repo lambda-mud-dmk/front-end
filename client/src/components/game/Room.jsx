@@ -45,9 +45,6 @@ class Room extends React.Component {
     this.setState({ room: nextProps.room, player: nextProps.player });
   }
 
-  componentDidUpdate() {
-    console.log(this.state.player);
-  }
   render() {
     const { id, title, player, n_to, s_to, w_to, e_to } = this.state.room;
     let direction = '';
@@ -69,7 +66,7 @@ class Room extends React.Component {
         {this.state.player &&
         this.state.player['room_id'] === this.state.room.id ? (
           <Player />
-        ) : null}
+        ) : <span>{this.state.room.id}</span>}
       </RoomDiv>
     );
   }

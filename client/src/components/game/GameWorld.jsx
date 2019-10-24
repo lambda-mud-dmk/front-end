@@ -26,7 +26,7 @@ class GameWorld extends Component {
 
   fetchRooms = async () => {
     const response = await axios.get(`${apiUrl}/adv/rooms`);
-    return response.data.room.reverse();
+    return response.data.room;
   };
 
   fetchInit = async () => {

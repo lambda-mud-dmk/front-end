@@ -52,7 +52,6 @@ const Controls = ({ updatePlayer }) => {
         }
       );
 
-      console.log(response);
       updatePlayer(response.data);
       return response.data;
     } catch (error) {

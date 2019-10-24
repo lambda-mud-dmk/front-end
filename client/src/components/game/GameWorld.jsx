@@ -34,7 +34,7 @@ class GameWorld extends Component {
     return (
       <div>
         {row.map(room => (
-          <Room room={room} />
+          <Room room={room} player={this.state.player} />
         ))}
       </div>
     );

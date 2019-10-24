@@ -33,26 +33,39 @@ const Player = styled.div`
   border-radius: 50%;
 `;
 
-const Room = props => {
-  console.log(props);
-  const { id, title, n_to, s_to, w_to, e_to } = props.room;
-  let direction = '';
-  if (n_to !== 0) {
-    direction = 'n';
-  } else if (s_to !== 0) {
-    direction = 's';
-  } else if (w_to !== 0) {
-    direction = 'w';
-  } else if (e_to !== 0) {
-    direction = 'e';
+class Room extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      room: props.room
+    };
   }
-  console.log(direction);
+  componentWillReceiveProps(nextProps) {
+    debugger;
+    this.setState({ room: nextProps.room, player: nextProps.player });
+  }
+  render() {
+    const { id, title, player, n_to, s_to, w_to, e_to } = this.state.room;
+    let direction = '';
+    if (n_to !== 0) {
+      direction = 'n';
+    } else if (s_to !== 0) {
+      direction = 's';
+    } else if (w_to !== 0) {
+      direction = 'w';
+    } else if (e_to !== 0) {
+      direction = 'e';
+    }
+    if (player) {
+      console.log('Player::', player);
+    }
 
-  return (
-    <RoomDiv direction={direction}>
-      <Player />
-    </RoomDiv>
-  );
-};
+    return (
+      <RoomDiv direction={direction}>
+        {!player ? null : <Player>{id}</Player>}
+      </RoomDiv>
+    );
+  }
+}
 
 export default Room;

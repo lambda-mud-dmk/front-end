@@ -11,7 +11,6 @@ export const GameMap = styled.div`
   color: #fcfcfc;
   height: 100%;
   width: 70%;
-  border: 2px dashed red;
   display: flex;
 `;
 

@@ -5,9 +5,6 @@ import Input from '../input/Input';
 import Button from '../button/Button';
 import { Redirect } from 'react-router-dom';
 
-// const apiUrl = "http://127.0.0.1:8000/api";
-const apiUrl = 'https://dmk-csbw1.herokuapp.com/api';
-
 export default class signup extends Component {
   state = {
     username: '',
@@ -33,10 +30,13 @@ export default class signup extends Component {
     }
 
     try {
-      const response = await axios.post(`${apiUrl}/login/`, {
-        username,
-        password
-      });
+      const response = await axios.post(
+        'https://dmk-csbw1.herokuapp.com/api/login/',
+        {
+          username,
+          password
+        }
+      );
       localStorage.setItem('key', response.data.key);
       this.setState({
         username: '',

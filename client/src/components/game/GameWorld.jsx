@@ -1,9 +1,34 @@
-import React from "react";
+import React from 'react';
+import Controls from '../controls/Controls';
 
-export default function GameWorld() {
+const mainStyle = {
+  display: 'flex',
+  width: '100%',
+  height: '100vh'
+};
+
+const mapStyle = {
+  backgroundColor: 'red',
+  height: '100%',
+  width: '70%'
+};
+
+const controlsStyle = {
+  height: '75%',
+  width: '30%'
+};
+
+const GameWorld = () => {
   return (
-    <div>
-      <h2>Only logged in users </h2>
+    <div style={mainStyle} id="main">
+      <div style={mapStyle} id="map">
+        Map
+      </div>
+      <div style={controlsStyle} id="controls">
+        <Controls />
+      </div>
     </div>
   );
-}
+};
+
+export default GameWorld;

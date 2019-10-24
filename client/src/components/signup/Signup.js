@@ -4,6 +4,9 @@ import axios from "axios";
 import Input from "../input/Input";
 import Button from "../button/Button";
 
+const apiUrl = "http://127.0.0.1:8000/api";
+// const apiUrl = "https://dmk-csbw1.herokuapp.com/api";
+
 export default class signup extends Component {
   state = {
     username: "",
@@ -42,15 +45,12 @@ export default class signup extends Component {
     }
 
     try {
-      const response = await axios.post(
-        "https://lambda-mud-test.herokuapp.com/api/registration/",
-        {
-          username,
-          email,
-          password1: password,
-          password2: confirm_password
-        }
-      );
+      const response = await axios.post(`${apiUrl}/registration/`, {
+        username,
+        email,
+        password1: password,
+        password2: confirm_password
+      });
       localStorage.setItem("key", response.data.key);
       this.setState({
         username: "",

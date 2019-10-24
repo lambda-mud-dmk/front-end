@@ -1,15 +1,18 @@
-import React, { Component } from 'react';
-import axios from 'axios';
-import styled from 'styled-components';
-import Input from '../input/Input';
-import Button from '../button/Button';
-import { Redirect } from 'react-router-dom';
+import React, { Component } from "react";
+import axios from "axios";
+import styled from "styled-components";
+import Input from "../input/Input";
+import Button from "../button/Button";
+import { Redirect } from "react-router-dom";
+
+const apiUrl = "http://127.0.0.1:8000/api";
+// const apiUrl = "https://dmk-csbw1.herokuapp.com/api";
 
 export default class signup extends Component {
   state = {
-    username: '',
-    password: '',
-    error: '',
+    username: "",
+    password: "",
+    error: "",
     shouldRedirect: false
   };
 
@@ -25,24 +28,21 @@ export default class signup extends Component {
     const { username, password } = this.state;
     if (!username || username.length < 3) {
       return this.setState({
-        error: 'username must be at least 3 characters long'
+        error: "username must be at least 3 characters long"
       });
     }
 
     try {
-      const response = await axios.post(
-        'https://dmk-csbw1.herokuapp.com/api/login/',
-        {
-          username,
-          password
-        }
-      );
-      localStorage.setItem('key', response.data.key);
+      const response = await axios.post(`${apiUrl}/login/`, {
+        username,
+        password
+      });
+      localStorage.setItem("key", response.data.key);
       this.setState({
-        username: '',
-        email: '',
-        password: '',
-        error: '',
+        username: "",
+        email: "",
+        password: "",
+        error: "",
         shouldRedirect: true
       });
     } catch (error) {
@@ -78,7 +78,7 @@ export default class signup extends Component {
               <Button>LOGIN</Button>
               <div>
                 <p>
-                  Don't have an account?{' '}
+                  Don't have an account?{" "}
                   <a href="/registration">Create one here </a>
                 </p>
               </div>
@@ -93,7 +93,7 @@ export default class signup extends Component {
 }
 
 const Div = styled.div`
-  background: url('/controller.jpg');
+  background: url("/controller.jpg");
   width: 100%;
   height: 100vh;
   background-size: cover;

@@ -1,44 +1,47 @@
-import React from 'react';
-import axios from 'axios';
+import React from "react";
+import axios from "axios";
 
 const styleControls = {
-  display: 'flex',
-  flexDirection: 'column',
-  flexWrap: 'nowrap',
-  justifyContent: 'space-around',
-  alignItems: 'center',
-  alignContent: 'stretch',
-  height: '100vh'
+  display: "flex",
+  flexDirection: "column",
+  flexWrap: "nowrap",
+  justifyContent: "space-around",
+  alignItems: "center",
+  alignContent: "stretch",
+  height: "100vh"
 };
 
 const styleButtons = {
-  display: 'flex',
-  flexDirection: 'row',
-  flexWrap: 'nowrap',
-  justifyContent: 'space-around',
-  alignItems: 'center',
-  alignContent: 'stretch',
-  height: '100vh'
+  display: "flex",
+  flexDirection: "row",
+  flexWrap: "nowrap",
+  justifyContent: "space-around",
+  alignItems: "center",
+  alignContent: "stretch",
+  height: "100vh"
 };
 
 const buttonStyle = {
-  border: '1px solid black',
-  fontSize: '40px',
-  padding: '1rem',
-  cursor: 'pointer'
+  border: "1px solid black",
+  fontSize: "40px",
+  padding: "1rem",
+  cursor: "pointer"
 };
+
+const apiUrl = "http://127.0.0.1:8000/api";
+// const apiUrl = "https://dmk-csbw1.herokuapp.com/api";
 
 const makeRequest = async (token, direction) => {
   try {
     const response = await axios.post(
-      'https://dmk-csbw1.herokuapp.com/api/adv/move/',
+      `${apiUrl}/adv/move/`,
       {
         direction
       },
       {
         headers: {
-          'Content-Type': 'application/json',
-          Authorization: 'Token ' + token
+          "Content-Type": "application/json",
+          Authorization: "Token " + token
         }
       }
     );
@@ -56,36 +59,36 @@ const sendMovement = async (token, direction) => {
 
 const Controls = room => {
   const [currentRoom, setCurrentRoom] = React.useState(
-    room ? room : { title: '', description: '' }
+    room ? room : { title: "", description: "" }
   );
   const moveNorth = async () => {
-    const token = localStorage.getItem('key');
-    const room = await sendMovement(token, 'n');
+    const token = localStorage.getItem("key");
+    const room = await sendMovement(token, "n");
     setCurrentRoom(room);
   };
 
   const moveSouth = async () => {
-    const token = localStorage.getItem('key');
-    const room = await sendMovement(token, 's');
+    const token = localStorage.getItem("key");
+    const room = await sendMovement(token, "s");
     setCurrentRoom(room);
   };
 
   const moveEast = async () => {
-    const token = localStorage.getItem('key');
-    const room = await sendMovement(token, 'e');
+    const token = localStorage.getItem("key");
+    const room = await sendMovement(token, "e");
     setCurrentRoom(room);
   };
 
   const moveWest = async () => {
-    const token = localStorage.getItem('key');
-    const room = await sendMovement(token, 'w');
+    const token = localStorage.getItem("key");
+    const room = await sendMovement(token, "w");
     setCurrentRoom(room);
   };
 
   return (
     <>
       <div style={styleControls}>
-        <div style={{ height: '25%' }}>
+        <div style={{ height: "25%" }}>
           <p>{currentRoom.title}</p>
           <p>{currentRoom.description}</p>
         </div>

@@ -4,8 +4,8 @@ import Controls from '../controls/Controls';
 import { GameDiv, GameMap, GameControls } from './GameWorldStyles';
 import Room from './Room';
 
-const apiUrl = 'http://127.0.0.1:8000/api/adv/rooms';
-// const apiUrl = "https://dmk-csbw1.herokuapp.com/api/adv/rooms";
+// const apiUrl = 'http://127.0.0.1:8000/api/adv/rooms';
+const apiUrl = 'https://dmk-csbw1.herokuapp.com/api/adv/rooms';
 
 class GameWorld extends Component {
   constructor(props) {
@@ -15,9 +15,11 @@ class GameWorld extends Component {
       player: {}
     };
   }
+  componentWillReceiveProps(nextProps) {
+    this.setState({ ...this.state, player: nextProps.player });
+  }
   async componentDidMount() {
     const rooms = await this.fetchRooms();
-    console.log(rooms);
     this.setState({ rooms });
   }
 

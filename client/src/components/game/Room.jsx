@@ -41,7 +41,6 @@ class Room extends React.Component {
     };
   }
   componentWillReceiveProps(nextProps) {
-    debugger;
     this.setState({ room: nextProps.room, player: nextProps.player });
   }
   render() {
@@ -61,9 +60,7 @@ class Room extends React.Component {
     }
 
     return (
-      <RoomDiv direction={direction}>
-        {!player ? null : <Player>{id}</Player>}
-      </RoomDiv>
+      <RoomDiv direction={direction}>{!player ? null : <Player />}</RoomDiv>
     );
   }
 }

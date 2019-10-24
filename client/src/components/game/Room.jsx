@@ -46,7 +46,7 @@ class Room extends React.Component {
   }
 
   componentDidUpdate() {
-    console.log(this.state.player)
+    console.log(this.state.player);
   }
   render() {
     const { id, title, player, n_to, s_to, w_to, e_to } = this.state.room;
@@ -65,7 +65,12 @@ class Room extends React.Component {
     }
 
     return (
-      <RoomDiv direction={direction}>{this.state.player && this.state.player["room_id"] === this.state.room.id ? <Player /> : null}</RoomDiv>
+      <RoomDiv direction={direction}>
+        {this.state.player &&
+        this.state.player['room_id'] === this.state.room.id ? (
+          <Player />
+        ) : null}
+      </RoomDiv>
     );
   }
 }

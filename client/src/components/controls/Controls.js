@@ -28,36 +28,42 @@ const buttonStyle = {
   cursor: 'pointer'
 };
 
-const makeRequest = async (token, direction) => {
-  try {
-    const response = await axios.post(
-      'https://dmk-csbw1.herokuapp.com/api/adv/move/',
-      {
-        direction
-      },
-      {
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: 'Token ' + token
+// const apiUrl = 'http://127.0.0.1:8000/api';
+const apiUrl = 'https://dmk-csbw1.herokuapp.com/api';
+
+const Controls = ({ updatePlayer }) => {
+  const [currentRoom, setCurrentRoom] = React.useState({
+    title: '',
+    description: ''
+  });
+
+  const makeRequest = async (token, direction) => {
+    try {
+      const response = await axios.post(
+        `${apiUrl}/adv/move/`,
+        {
+          direction
+        },
+        {
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: 'Token ' + token
+          }
         }
-      }
-    );
+      );
 
-    console.log(response);
-    return response.data;
-  } catch (error) {
-    console.error(error);
-  }
-};
+      console.log(response);
+      updatePlayer(response.data);
+      return response.data;
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
-const sendMovement = async (token, direction) => {
-  return await makeRequest(token, direction);
-};
+  const sendMovement = async (token, direction) => {
+    return await makeRequest(token, direction);
+  };
 
-const Controls = room => {
-  const [currentRoom, setCurrentRoom] = React.useState(
-    room ? room : { title: '', description: '' }
-  );
   const moveNorth = async () => {
     const token = localStorage.getItem('key');
     const room = await sendMovement(token, 'n');

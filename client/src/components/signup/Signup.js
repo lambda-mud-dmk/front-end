@@ -1,17 +1,20 @@
-import React, { Component } from "react";
-import styled from "styled-components";
-import axios from "axios";
-import Input from "../input/Input";
-import Button from "../button/Button";
+import React, { Component } from 'react';
+import styled from 'styled-components';
+import axios from 'axios';
+import Input from '../input/Input';
+import Button from '../button/Button';
+
+// const apiUrl = "http://127.0.0.1:8000/api";
+const apiUrl = 'https://dmk-csbw1.herokuapp.com/api';
 
 export default class signup extends Component {
   state = {
-    username: "",
-    email: "",
-    password: "",
-    confirm_password: "",
-    password_error: "",
-    error: ""
+    username: '',
+    email: '',
+    password: '',
+    confirm_password: '',
+    password_error: '',
+    error: ''
   };
 
   handleChange = event => {
@@ -32,33 +35,30 @@ export default class signup extends Component {
     } = this.state;
     if (!username || username.length < 3) {
       return this.setState({
-        error: "username must be at least 3 characters long"
+        error: 'username must be at least 3 characters long'
       });
     }
     if (password !== confirm_password) {
       return this.setState({
-        password_error: "passwords do not match"
+        password_error: 'passwords do not match'
       });
     }
 
     try {
-      const response = await axios.post(
-        "https://lambda-mud-test.herokuapp.com/api/registration/",
-        {
-          username,
-          email,
-          password1: password,
-          password2: confirm_password
-        }
-      );
-      localStorage.setItem("key", response.data.key);
+      const response = await axios.post(`${apiUrl}/registration/`, {
+        username,
+        email,
+        password1: password,
+        password2: confirm_password
+      });
+      localStorage.setItem('key', response.data.key);
       this.setState({
-        username: "",
-        email: "",
-        password: "",
-        confirm_password: "",
-        password_error: "",
-        error: ""
+        username: '',
+        email: '',
+        password: '',
+        confirm_password: '',
+        password_error: '',
+        error: ''
       });
     } catch (error) {
       console.error(error);
@@ -120,7 +120,7 @@ export default class signup extends Component {
 }
 
 const Div = styled.div`
-  background: url("/controller.jpg");
+  background: url('/controller.jpg');
   width: 100%;
   height: 100vh;
   background-size: cover;

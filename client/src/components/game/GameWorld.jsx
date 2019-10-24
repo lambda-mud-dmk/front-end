@@ -1,33 +1,19 @@
 import React from 'react';
+import axios from 'axios';
 import Controls from '../controls/Controls';
+import { GameDiv, GameMap, GameControls } from './GameWorldStyles';
 
-const mainStyle = {
-  display: 'flex',
-  width: '100%',
-  height: '100vh'
-};
-
-const mapStyle = {
-  backgroundColor: 'red',
-  height: '100%',
-  width: '70%'
-};
-
-const controlsStyle = {
-  height: '75%',
-  width: '30%'
-};
+const apiUrl = 'http://127.0.0.1:8000/api/adv/rooms';
+// const apiUrl = "https://dmk-csbw1.herokuapp.com/api/adv/rooms";
 
 const GameWorld = () => {
   return (
-    <div style={mainStyle} id="main">
-      <div style={mapStyle} id="map">
-        Map
-      </div>
-      <div style={controlsStyle} id="controls">
+    <GameDiv id="main">
+      <GameMap id="map">Map</GameMap>
+      <GameControls id="controls">
         <Controls />
-      </div>
-    </div>
+      </GameControls>
+    </GameDiv>
   );
 };
 

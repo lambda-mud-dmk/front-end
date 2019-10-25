@@ -47,7 +47,7 @@ class GameWorld extends Component {
 
   displayRows = row => {
     return (
-      <div>
+      <div style={{ border: '1px solid red' }}>
         {row.map(room => (
           <Room room={room} player={this.state.player} />
         ))}
@@ -71,10 +71,14 @@ class GameWorld extends Component {
       });
       arrangedRooms.push(rooms.slice(90));
     }
+    console.log(arrangedRooms);
     return (
       <GameDiv>
         <GameMap>
-          {arrangedRooms && arrangedRooms.map(this.displayRows)}
+          {rooms &&
+            rooms.map(room => {
+              return <Room room={room} player={this.state.player} />;
+            })}
         </GameMap>
         <GameControls id="controls">
           <Controls

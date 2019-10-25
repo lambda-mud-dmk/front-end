@@ -2,26 +2,26 @@ import React from 'react';
 import styled from 'styled-components';
 
 const RoomDiv = styled.div`
-  width: 50px;
-  height: 50px;
-  border: 1px solid #fcfcfc;
+  width: 55px;
+  height: 55px;
+  /* border: 1px solid #fcfcfc; */
   display: flex;
   align-items: center;
   justify-content: center;
   ${props =>
-    !props.direction.includes('wall_w')
+    props.direction.includes('wall_w')
       ? 'border-left: 1px solid #fcfcfc'
       : 'border-left: 1px solid transparent'};
   ${props =>
-    !props.direction.includes('wall_n')
+    props.direction.includes('wall_n')
       ? 'border-top: 1px solid #fcfcfc'
       : 'border-top: 1px solid transparent'};
   ${props =>
-    !props.direction.includes('wall_e')
+    props.direction.includes('wall_e')
       ? 'border-right: 1px solid #fcfcfc'
       : 'border-right: 1px solid transparent'};
   ${props =>
-    !props.direction.includes('wall_s')
+    props.direction.includes('wall_s')
       ? 'border-bottom: 1px solid #fcfcfc'
       : 'border-bottom: 1px solid transparent'};
 `;
@@ -55,18 +55,18 @@ class Room extends React.Component {
       wall_w,
       wall_e
     } = this.state.room;
-    let direction = '';
-    if (wall_n !== 0) {
-      direction = 'n';
+    let direction = [];
+    if (wall_n) {
+      direction.push('wall_n');
     }
-    if (wall_s !== 0) {
-      direction = 's';
+    if (wall_s) {
+      direction.push('wall_s');
     }
-    if (wall_w !== 0) {
-      direction = 'w';
+    if (wall_w) {
+      direction.push('wall_w');
     }
-    if (wall_e !== 0) {
-      direction = 'e';
+    if (wall_e) {
+      direction.push('wall_e');
     }
     if (player) {
       console.log('Player::', player);
@@ -77,7 +77,9 @@ class Room extends React.Component {
         {this.state.player &&
         this.state.player['room_id'] === this.state.room.id ? (
           <Player />
-        ) : null}
+        ) : (
+          <span>{this.state.room.id}</span>
+        )}
       </RoomDiv>
     );
   }

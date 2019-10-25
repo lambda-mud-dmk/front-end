@@ -9,9 +9,16 @@ export const GameDiv = styled.div`
 export const GameMap = styled.div`
   background: #383f51;
   color: #fcfcfc;
-  height: 100%;
-  width: 70%;
+  height: 600px;
+  width: 600px;
   display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: stretch;
+  align-content: stretch;
+
+  
 `;
 
 export const GameControls = styled.div`

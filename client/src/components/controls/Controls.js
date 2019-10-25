@@ -31,7 +31,7 @@ const buttonStyle = {
 // const apiUrl = 'http://127.0.0.1:8000/api';
 const apiUrl = 'https://dmk-csbw1.herokuapp.com/api';
 
-const Controls = ({ updatePlayer }) => {
+const Controls = ({ updatePlayer, player }) => {
   const [currentRoom, setCurrentRoom] = React.useState({
     title: '',
     description: ''
@@ -52,7 +52,6 @@ const Controls = ({ updatePlayer }) => {
         }
       );
 
-      console.log(response);
       updatePlayer(response.data);
       return response.data;
     } catch (error) {
@@ -87,12 +86,13 @@ const Controls = ({ updatePlayer }) => {
     const room = await sendMovement(token, 'w');
     setCurrentRoom(room);
   };
-
+  console.log('Room', currentRoom);
   return (
     <>
       <div style={styleControls}>
         <div style={{ height: '25%' }}>
-          <p>{currentRoom.title}</p>
+          <p>Player: {player.name}</p>
+          <p>Room: {player.room_id}</p>
           <p>{currentRoom.description}</p>
         </div>
         <div style={styleButtons}>

@@ -77,7 +77,10 @@ class GameWorld extends Component {
           {arrangedRooms && arrangedRooms.map(this.displayRows)}
         </GameMap>
         <GameControls id="controls">
-          <Controls updatePlayer={this.updatePlayer} />
+          <Controls
+            player={this.state.player}
+            updatePlayer={this.updatePlayer}
+          />
         </GameControls>
       </GameDiv>
     );

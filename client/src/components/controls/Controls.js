@@ -95,16 +95,16 @@ const Controls = ({ updatePlayer }) => {
           <p>{currentRoom.description}</p>
         </div>
         <div style={styleButtons}>
-          <div onClick={moveNorth} style={buttonStyle}>
+          <div onClick={moveWest} style={buttonStyle}>
             ↑
           </div>
-          <div onClick={moveWest} style={buttonStyle}>
+          <div onClick={moveNorth} style={buttonStyle}>
             ←
           </div>
-          <div onClick={moveEast} style={buttonStyle}>
+          <div onClick={moveSouth} style={buttonStyle}>
             →
           </div>
-          <div onClick={moveSouth} style={buttonStyle}>
+          <div onClick={moveEast} style={buttonStyle}>
             ↓
           </div>
         </div>
